@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Beginner</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> 
+    <style>
+         body {
+            margin : 5%;
+            font-family:'Quicksand', sans-serif;
+        }
+        .active {
+            background: salmon;
+            border: 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <header>
+        <img src="logo.png" width="80">
+        <!-- v-html adalah directive -->
+        <h1 v-text="ubahNama('Muhammad Miftahudin').toUpperCase()"></h1>
+        <p>bilangan ini adalah bilangan {{infoBilangan}}</p>
+        <p>The Progressive Javascript Framework</p>
+        <img  v-bind:src="gambar" width="500">
+        <p>
+            <!-- event = interaksi user dengan aplikasi, seperti click -->
+            <button @click="handleClick">Ditekan</button>
+            <h1 v-text="bilangan"></h1>
+            <!-- class binding -->
+            <button v-bind:class="{active:menu === 'home'}" @click="menu='home'">Home</button>
+            <button v-bind:class="{active:menu === 'about'}"@click="menu='about'">About</button>
+            <button v-bind:class="{active:menu === 'blog'}"@click="menu='blog'">Blog</button>
+        </p>
+        <!-- Two Way Data Binding -->
+        <input type="text" v-model="name">
+        <div> 
+            <p>{{kelas}}</p>
+            <p>
+            <label><input type="checkbox" value="React" v-model="kelas">React</label>
+            <label><input type="checkbox" value="Vuejs" v-model="kelas">Vuejs</label>
+            <label><input type="checkbox" value="Angular" v-model="kelas">Angular</label>
+            </p>
+        </div>
+    </header>
+    
+    <footer id="footer">
+        <p>Copyright 2021</p>
+    </footer>     
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<script>
+    const member= {
+        //string, number, boolean, object
+        name:'Doremi Fasilasido',
+        message:"Hello World!",
+        qty : 1,
+        isactive:true,
+        namaDepan : "Muhammad ",
+        namaBelakang : "Miftahudin",
+        bilangan : 107,
+        link : '<a href=""> facebook.com</a>',
+        gambar : "poster.png",
+        menu : 'home',
+        kelas : []
+    }
+    
+    const vm = new Vue({ //instance
+        el:'#app', //component (id #, class .)
+        data: member, //data
+        methods : { //function
+            getname : function(){
+                return 'Hello, ' +this.name
+            },
+            ubahNama : function(namaBaru){
+                this.name = namaBaru
+                return this.getname()
+            },
+            handleClick : function() {
+                this.bilangan++
+                this.bilangan%2 === 0 ? this.gambar="logo.png" : this.gambar="poster.png"
+            }
+        },
+        computed : { //computed
+            totalBayar : function(){
+                return this.qty*1000 
+            },
+            namaLengkap : function(){
+                return this.namaDepan + this.namaBelakang
+            },
+            infoBilangan : function(){
+                return  this.bilangan%2 === 0 ?'Genap' :'Ganjil'
+            }
+            
+        }
+    })
+</script>
+</body>
+</html>

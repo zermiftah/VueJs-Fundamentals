@@ -1,0 +1,25 @@
+Reactive data binding : menyimpan data kalian seperti variabel , array , value dll dan 
+tersinkronisasikan dengan DOM tanpa anda harus melakukan apa 
+apa (langkah tambahan) .
+
+Model View ViewModel (MVVM) merupakan salah satu architectural pattern yang dipakai 
+dalam pengembangan perangkat lunak berbasis Graphical User Interface (GUI), 
+arsitektur ini memisahkan business logic dengan GUI.
+
+
+Styntax dasar :
+<div id="app">
+  <app-nav></app-nav>
+  <app-view>
+    <app-sidebar></app-sidebar>
+    <app-content></app-content>
+  </app-view>
+</div>
+
+
+instance :
+new Vue()
+
+component :
+el:'#app' -> id
+el:'.app' -> id
